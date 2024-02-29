@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="description" content="This is where your description goes">
+	<meta name="keywords" content="one, two, three">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+	<title>Blog Posts App | Edit Post</title>
+
+	<!-- external CSS link -->
+	<link rel="stylesheet" href="css/normalize.css">
+	<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+	<h1>Posts: Node.js CRUD API with Express and MongoDB</h1>
+
+	<!-- Posts -->
+	<h1>Edit Post</h1>
+	<form id="editPostForm" action="/posts/<%= post._id %>" method="PUT">
+		<label for="title">Title:</label><br>
+		<input type="text" id="title" name="title" value="<%= post.title %>" required><br>
+
+
+		<label for="author">Author:</label><br>
+		<input type="text" id="author" name="author" value="<%= post.author %>" required><br>
+
+		<label for="tags">Tags:</label><br>
+		<input type="text" id="tags" name="tags" placeholder="Separate tags with commas" value="<%= post.tags %>"><br>
+
+		<label for="createdOn">Created on:</label><br>
+		<input type="date" id="createdOn" name="createdOn" required value="<%= post.createdOn %>"><br>
+
+		<label for="content">Content:</label><br>
+		<textarea id="content" name="content" rows="4" cols="50" required><%= post.content %></textarea><br>
+
+		<button data-id="<%= post._id %>" id="save-btn" class="btn btn-succes" type="submit">Re-Publish</button>
+		<button data-id="<%= post._id %>" id="cancel-btn" class="btn btn-succes" type="submit">Cancel</button>
+	</form>
+
+
+
+	<script src="/main.js"></script>
+</body>
+
+</html>

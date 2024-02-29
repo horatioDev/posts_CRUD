@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="description" content="This is where your description goes">
+	<meta name="keywords" content="one, two, three">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+	<title>Blog Posts App</title>
+
+	<!-- external CSS link -->
+	<link rel="stylesheet" href="css/normalize.css">
+	<link rel="stylesheet" href="css/style.css">
+	<script src="https://kit.fontawesome.com/29cb2c9a11.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+	<h1>Posts: Node.js CRUD API with Express and MongoDB</h1>
+
+	<!-- Posts -->
+	<h1>Create New Post</h1>
+	<form action="/posts" method="POST">
+		<label for="title">Title:</label><br>
+		<input type="text" id="title" name="title" required><br>
+
+
+		<label for="author">Author:</label><br>
+		<input type="text" id="author" name="author" required><br>
+
+		<label for="tags">Tags:</label><br>
+		<input type="text" id="tags" name="tags" placeholder="Separate tags with commas"><br>
+
+		<label for="createdOn">Created on:</label><br>
+		<input type="date" id="createdOn" name="createdOn" required><br>
+
+		<label for="content">Content:</label><br>
+		<textarea id="content" name="content" rows="4" cols="50" required></textarea><br>
+
+		<button type="submit">Publish</button>
+	</form>
+
+	<!-- Template -->
+	<h3>Posts</h3>
+	
+	<ul class="posts">
+		<% if (posts &&  posts.length > 0) { %>
+			<% posts.forEach(post => { %>
+				<li class="post">
+					<section class="entry">
+						<section class="info">
+							<h4 class="title">
+								<%= post.title %>
+							</h4>
+							<small class="author">By: <%= post.author %> on <%= post.createdOn %></small><br>
+							<small class="tags">Tags:  <%= post.tags %></small>
+							<p class="content">
+								<%= post.content %>
+							</p>
+						</section>
+						<div class="crud-buttons">
+							<button data-id="<%= post._id %>" class="btn btn-warning" id="update-btn">Update</button>
+							<button data-id="<%= post._id %>" class="btn btn-danger" id="delete-btn">Delete</button>
+						</div>
+					</section>
+				</li>
+			<% }); %>
+		<% } else { %>
+			<p>No posts available.</p>
+		<%}%>
+	</ul>
+
+	<!-- Links to Other API's -->
+	<ul>
+		<!-- <li class="api-icon"><a href="/posts"><i class="fas fa-pencil-alt"></i> Posts/Blog API</a></li> -->
+		<li class="api-icon"><a href="/tasks"><i class="fas fa-tasks"></i> Tasks Manager API</a></li>
+		<li class="api-icon"><a href="/employees"><i class="fas fa-users"></i> Team Tracker API</a></li>
+		<li class="api-icon"><a href="/quotes"><i class="fas fa-quote-left"></i> Quotes API</a></li>
+		<li class="api-icon"><a href="/contacts"><i class="fas fa-address-book"></i> Address Book API</a></li>
+	</ul>
+	<!-- <%= posts %> -->
+
+	<script src="/main.js"></script>
+</body>
+
+</html>
